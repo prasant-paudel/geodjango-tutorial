@@ -1,0 +1,25 @@
+services:
+  db:
+    image: postgis/postgis
+    container_name: db
+    ports:
+      - "5432:5432"
+    restart: on-failure
+    environment:
+      - POSTGRES_DB=gis
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  web:
+    build: .
+    container_name: web
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+    
+
+
+
