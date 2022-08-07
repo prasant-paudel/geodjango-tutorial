@@ -1,6 +1,21 @@
 # GeoDjango Tutorial - RealPython
 
-## Install PostgreSQL (includes PostGIS)
+## Using Docker
+
+### Windows
+```
+./build.cmd
+```
+### Linux
+```
+./build.sh
+```
+
+
+
+## Mannual Installation
+
+### Install PostgreSQL (includes PostGIS)
 ```bash
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
@@ -20,7 +35,7 @@ sudo service postgresql start
 sudo su postgres -c "pg_ctlcluster 13 main start"
 ```
 
-## Install QGIS (includes GDAL, GEOS, PROJ.4)
+### Install QGIS (includes GDAL, GEOS, PROJ.4)
 ```bash
 sudo apt install wget gnupg software-properties-common
 ```
@@ -35,7 +50,7 @@ sudo apt install -y qgis qgis-plugin-grass
 sudo apt install -y gdal-bin libgdal-dev
 ```
 
-## Install Python 3.6
+### Install Python 3.6
 ```bash
 sudo add-apt-repository ppa:deadsnakes/ppa -y
 sudo apt update
@@ -43,10 +58,10 @@ sudo apt install -y python3.6
 sudo python3.6 -m ensurepip
 ```
 
-## Install Django (includes GeoDjango)
+### Install Django (includes GeoDjango)
 python3.6 -m pip install Django
 
-## Add GeoDjango to the Project
+### Add GeoDjango to the Project
 ```python
 INSTALLED_APPS = [
     # [...]
@@ -54,7 +69,7 @@ INSTALLED_APPS = [
 ]
 ```
 
-## Create an App
+### Create an App
 ```python
 python3 manage.py startapp shops
 ```
@@ -66,7 +81,7 @@ INSTALLED_APPS = [
 ]
 ```
 
-## Create Django Models
+### Create Django Models
 `shops/models.py`
 ```python
 from django.contrib.gis.db import models
@@ -79,7 +94,7 @@ class Shop(models.Model):
 ```
 `PointField` is a GeoDjango-specific geometric field for sorting GEOS Point object that represents a pair of longitude and latitude coordinates.
 
-## Register Django Models in the Admin Interface
+### Register Django Models in the Admin Interface
 `shops/admin.py`
 ```python
 from django.contrib.gis import admin
@@ -90,10 +105,10 @@ class ShopAdmin(admin.OSMGeoAdmin):
     list_display = ('name', 'location')
 ```
 
-## Create Database Tables
+### Create Database Tables
 ```
 python3 manage.py makemigrations
 pytho3 manage.py migrate
 ```
 
-## Leaflet JS
+### Leaflet JS
