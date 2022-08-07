@@ -13,7 +13,7 @@
 
 
 
-## Mannual Installation
+## Mannual Installation (Ubuntu 20.04 LTS)
 
 ### Install PostgreSQL (includes PostGIS)
 ```bash
